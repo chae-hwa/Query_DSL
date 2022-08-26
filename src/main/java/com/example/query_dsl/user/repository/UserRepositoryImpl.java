@@ -12,14 +12,13 @@ public class UserRepositoryImpl implements UserRepositoryCustom{
 
     @Override
     public SiteUser getQslUser(Long id){
-        /*
+
         return jpaQueryFactory
                 .select(QSiteUser.siteUser)
                 .from(QSiteUser.siteUser)
-                .where(QSiteUser.siteUser.id.eq(1L))
-                .fetch();
+                .where(QSiteUser.siteUser.id.eq(id))
+                .fetchOne();
 
-                */
-        return null;
+
     }
 }
