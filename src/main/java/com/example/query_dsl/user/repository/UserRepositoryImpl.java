@@ -5,6 +5,8 @@ import com.example.query_dsl.user.entity.SiteUser;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
+
 import static com.example.query_dsl.user.entity.QSiteUser.siteUser;
 
 @RequiredArgsConstructor
@@ -39,5 +41,17 @@ public class UserRepositoryImpl implements UserRepositoryCustom{
                 .orderBy(siteUser.id.asc())
                 .limit(1)
                 .fetchOne();
+    }
+
+    @Override
+    public List<SiteUser> searchQsl(String user1) {
+        return jpaQueryFactory
+                .select(siteUser)
+                .from(siteUser)
+                .where(
+                        siteUser.username.like("%user1%")
+                                .or(siteUser.email.like("%user1%"))
+                )
+                .fetch();
     }
 }
