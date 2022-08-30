@@ -121,8 +121,8 @@ class UserRepositoryTests {
     }
 
     @Test
-    @DisplayName("검색, Page 리턴, id DESC, pageSize=1, page=0")
-    void t8(){
+    @DisplayName("검색, Page 리턴, id ASC, pageSize=1, page=0")
+    void t8() {
         long totalCount = userRepository.count();
         int pageSize = 1; // 한 페이지에 보여줄 아이템 개수
         int totalPages = (int)Math.ceil(totalCount / (double)pageSize);
