@@ -24,4 +24,6 @@ public class SiteUser {
     private String email;
 
 
+    public void addInterestKeywordContent(String keywordContent) {
+    }
 }

@@ -179,4 +179,20 @@ class UserRepositoryTests {
         assertThat(u.getEmail()).isEqualTo("user1@test.com");
         assertThat(u.getPassword()).isEqualTo("{noop}1234");
     }
+
+    @Test
+    @DisplayName("")
+    void t10(){
+        SiteUser u2 = userRepository.getQslUser(2L);
+
+        u2.addInterestKeywordContent("축구");
+        u2.addInterestKeywordContent("롤");
+        u2.addInterestKeywordContent("헬스");
+        u2.addInterestKeywordContent("헬스"); // 중복 등록 무시
+
+        userRepository.save(u2);
+        // 엔티티 클래스 : InterestKeyword(interest_keyword 테이블)
+        // 중간 테이블
+
+    }
 }
