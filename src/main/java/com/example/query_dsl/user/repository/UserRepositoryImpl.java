@@ -16,6 +16,7 @@ import org.springframework.data.support.PageableExecutionUtils;
 import java.util.List;
 import java.util.function.LongSupplier;
 
+import static com.example.query_dsl.interestKeyword.QInterestKeyword.interestKeyword;
 import static com.example.query_dsl.user.entity.QSiteUser.siteUser;
 
 @RequiredArgsConstructor
@@ -101,6 +102,17 @@ public class UserRepositoryImpl implements UserRepositoryCustom{
                 );
 
         return PageableExecutionUtils.getPage(users, pageable, usersCountQuery::fetchOne);
+    }
+
+    @Override
+    public List<SiteUser> getQslUserByInterestKeyword(String keywordContent) {
+        return jpaQueryFactory
+                .selectFrom(siteUser)
+                .innerJoin(siteUser.interestKeywords, interestKeyword)
+                .where(
+                        interestKeyword.content.eq(keywordContent)
+                )
+                .fetch();
     }
 
 
