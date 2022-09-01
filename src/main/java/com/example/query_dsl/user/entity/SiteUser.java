@@ -34,6 +34,10 @@ public class SiteUser {
     @ManyToMany(cascade = CascadeType.ALL)
     private Set<SiteUser> followers = new HashSet<>();
 
+    @Builder.Default
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<SiteUser> followings = new HashSet<>();
+
     public void addInterestKeywordContent(String keywordContent) {
         interestKeywords.add(new InterestKeyword(keywordContent));
     }
@@ -44,5 +48,8 @@ public class SiteUser {
         if(this.getId() == following.getId()) return;
 
         following.getFollowers().add(this);
+
+        getFollowings().add(following);
     }
+
 }
